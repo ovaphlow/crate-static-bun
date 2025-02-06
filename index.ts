@@ -9,13 +9,13 @@ const router = (request: Request) => {
 
 	let response: Response | Promise<Response>
 	switch (path) {
-		case '/crate-static-api/upload':
+		case '/crate-api-static/upload':
 			response = upload(request)
 			break
 		default:
-			if (path.startsWith('/crate-static-api/public')) {
+			if (path.startsWith('/crate-api-static/public')) {
 				try {
-					const filePath = join(process.env.UPLOAD_DIR || '', path.replace('/crate-static-api/public', ''))
+					const filePath = join(process.env.UPLOAD_DIR || '', path.replace('/crate-api-static/public', ''))
 					const fileContent = readFileSync(filePath)
 					response = new Response(fileContent)
 				} catch (err) {
